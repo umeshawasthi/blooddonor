@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 9, 2011 8:00:02 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+ <class name="com.raisonne.bd.pojo.DonorProfile" table="donor_profile">
+  <id name="donor_uuid" type="java.lang.String">
+   <column length="45" name="donor_uuid"/>
+   <generator class="uuid"/>
+  </id>
+  <one-to-one cascade="all"
+   class="com.raisonne.bd.pojo.DonorPreferences" name="donorPreferences"/>
+   <one-to-one cascade="all"
+   class="com.raisonne.bd.pojo.DonorRoles" name="donorRoles"/>
+  <set cascade="save-update, delete" fetch="select" inverse="true"
+   lazy="true" name="bloodDonationrecord" sort="unsorted" table="blood_donationrecord">
+   <key>
+    <column name="donor_uuid" not-null="true"/>
+   </key>
+   <one-to-many class="com.raisonne.bd.pojo.BloodDonationRecord"/>
+  </set>
+  <property generated="never" lazy="false" name="name" type="string">
+   <column length="45" name="name"/>
+  </property>
+  <property generated="never" lazy="false" name="dateOfBirth" type="timestamp">
+   <column length="19" name="date_of_birth"/>
+  </property>
+  <property generated="never" lazy="false" name="gender" type="string">
+   <column length="45" name="gender"/>
+  </property>
+  <property generated="never" lazy="false" name="weight" type="java.lang.Integer">
+   <column name="weight"/>
+  </property>
+  <property generated="never" lazy="false" name="email" type="string">
+   <column length="45" name="email" not-null="true" unique="true"/>
+  </property>
+  <property generated="never" lazy="false" name="secondaryContactNumber" type="string">
+   <column name="secondary_contact_number"/>
+  </property>
+  <property generated="never" lazy="false" name="state" type="string">
+   <column length="40" name="state" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="location" type="string">
+   <column length="40" name="location"/>
+  </property>
+  <property generated="never" lazy="false" name="bloodGroup" type="string">
+   <column length="20" name="blood_group" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="district" type="string">
+   <column length="40" name="district" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="postalCode" type="string">
+   <column length="20" name="postalcode"/>
+  </property>
+  <property generated="never" lazy="false" name="mobile" type="string">
+   <column name="mobile" not-null="true"/>
+  </property>
+  <property access="field" generated="never" lazy="false"
+   name="creationDate" type="timestamp" update="false">
+   <column length="19" name="creation_date" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="lastUpdated"
+   not-null="true" type="timestamp">
+   <column length="19" name="last_updated"/>
+  </property>
+  <property generated="never" lazy="false" name="lastDonated"
+   not-null="true" type="timestamp">
+   <column length="19" name="last_donated"/>
+  </property>
+  <property generated="never" lazy="false" name="lastLogin" type="timestamp">
+   <column length="19" name="last_login"/>
+  </property>
+  <property generated="never" lazy="false" name="oauth" type="boolean">
+   <column name="oauth"/>
+  </property>
+  <property generated="never" lazy="false" name="activatedFlag" type="boolean">
+   <column name="activated_flag"/>
+  </property>
+  <property generated="never" lazy="false" name="lastEmailDate"
+   not-null="false" type="timestamp">
+   <column length="19" name="last_email_date"/>
+    </property>
+   <property generated="never" lazy="false" name="lastSmsDate"
+   not-null="true" type="timestamp">
+   <column length="19" name="last_sms_date"/>
+  </property>
+ </class>
+</hibernate-mapping>

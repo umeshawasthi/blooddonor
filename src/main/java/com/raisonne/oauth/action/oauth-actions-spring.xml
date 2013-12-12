@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+   <!-- This xml file is the centeral control section 
+   		All Struts2 actions will be created  and will be injected by spring.
+   		and this file will be responsible for providing details to the
+   		Spring container for various actions that needs to be created and injected.
+    -->
+
+	 <bean id="oAuthRedirectAction" class="com.raisonne.oauth.action.OAuthRedirectAction" scope="prototype">
+		<property name="oAuthServiceConfiguration" ref="oAuthServiceConfiguration"/>
+		<property name="oAuthGetRequestToken" ref="oAuthGetRequestToken"/>
+	 </bean>
+	 
+	  			 
+	 <bean id="oAuthCallbackHandlerAction" class="com.raisonne.oauth.action.OAuthCallbackHandlerAction" scope="prototype">
+		<property name="oAuthServiceConfiguration" ref="oAuthServiceConfiguration"/>
+		<property name="oAuthGetAccessToken" ref="oAuthGetAccessToken"/>
+		<property name="jsonDataParser" ref="jsonDataParser"/> 
+		<property name="donorService" ref="donorService"/>
+		  
+	 </bean>
+	 
+	 <bean id="jsonDataParser" class="com.raisonne.oauth.data.parser.JsonDataParser" scope="prototype"/>
+	  <bean id="loginSelector" class="com.raisonne.oauth.action.LoginSelector" scope="prototype"/>
+
+</beans>

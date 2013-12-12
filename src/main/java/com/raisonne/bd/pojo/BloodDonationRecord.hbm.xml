@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 9, 2011 8:00:02 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.raisonne.bd.pojo.BloodDonationRecord" table="blood_donationrecord" >
+     <id name="blood_donationrecord_uuid" type="java.lang.String">
+			<column name="blood_donationrecord_uuid" length="45" />
+			<generator class="uuid" />
+		</id>
+        <property name="patientName" type="string">
+            <column name="patient_name" length="45" />
+        </property>
+        <property name="donationPlace" type="string">
+            <column name="donation_place" length="45" />
+        </property>
+        <property name="hospitalName" type="string">
+            <column name="hospital_name" length="45" />
+        </property>
+        <property name="bloodDonationdate" type="timestamp">
+            <column name="blood_donationdate" length="19" />
+        </property>
+        <property name="creationDate" type="timestamp" update="false" access="field">
+            <column name="creation_date" length="19" not-null="true" />
+        </property>
+        <property name="lastUpdated" type="timestamp" not-null="true">
+            <column name="last_updated" length="19" />
+        </property>
+          
+          <property name="donor_id" type="java.lang.String" not-null="true">
+            <column name="donor_uuid" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

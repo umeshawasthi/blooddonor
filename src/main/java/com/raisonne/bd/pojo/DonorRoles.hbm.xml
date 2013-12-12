@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 9, 2011 8:00:02 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.raisonne.bd.pojo.DonorRoles" table="donor_roles" >
+      
+        <id name="donorId" column="donor_id" type="java.lang.String">
+			<generator class="foreign" >
+			<param name="property">donorProfile</param>
+			</generator>
+		</id>
+       
+        <property name="donorRoles" type="string">
+            <column name="donor_role" length="45" not-null="true" />
+        </property>
+       <property name="creationDate" type="timestamp" update="false" access="field">
+            <column name="creation_date" length="19" not-null="true" />
+        </property>
+        <property name="lastUpdated" type="timestamp" not-null="true">
+            <column name="last_updated" length="19" />
+        </property>
+         <property  name="userEnabled" generated="never" lazy="false" type="boolean">
+   			<column name="user_enabled"/>
+ 		 </property>
+ 		  <property  name="accountExpired" generated="never" lazy="false" type="boolean">
+   			<column name="account_expired"/>
+ 		 </property>
+ 		  <property  name="credentialExpired" generated="never" lazy="false" type="boolean">
+   			<column name="credential_expired"/>
+ 		 </property>
+ 		  <property  name="accountLocked" generated="never" lazy="false" type="boolean">
+   			<column name="account_locked"/>
+ 		 </property>
+         <one-to-one name="donorProfile" class="com.raisonne.bd.pojo.DonorProfile" constrained="true" cascade="all"/>
+    </class>
+</hibernate-mapping>

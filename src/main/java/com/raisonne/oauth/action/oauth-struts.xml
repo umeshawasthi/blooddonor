@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+	<package name="oAuthAction" extends="struts-default">
+
+		<action name="oAuth" class="oAuthRedirectAction">
+			<result name="redirect_oauth_serice" type="redirect">${requestUrl}
+			</result>
+			<result name="bd" type="redirectAction">
+				<param name="actionName">register</param>
+				<param name="namespace">/account</param>
+			</result>
+		</action>
+		
+		<action name="login" class="loginSelector">
+			<result>/WEB-INF/templates/application/applicationframe.jsp
+		</result>
+			
+		</action>
+		
+		<action name="oAuthCallBackAction" class="oAuthCallbackHandlerAction">
+		
+		<exception-mapping exception="org.scribe.exceptions.OAuthException" 
+          result="oAuthException" />
+			<result name="register_new_user">/WEB-INF/templates/application/applicationframe.jsp</result>
+			<result name="user_validated" type="redirectAction">
+				<param name="actionName">welcome</param>
+			</result>
+			
+			<result name="oAuthException">/WEB-INF/templates/error/loginexception.jsp</result>
+		</action>
+		<!-- <action name="autoLogin">
+			<result>/jsp/index.jsp</result>
+		</action> -->
+		<!-- <result name="success" type="redirectAction"><param name="actionName">login</param></result> -->
+	</package>
+</struts>

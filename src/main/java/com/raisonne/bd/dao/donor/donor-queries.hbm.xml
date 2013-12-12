@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<query name="getDonorsInfoByArea">
+	<![CDATA[select donorProfile.donor_uuid, donorProfile.name, donorProfile.email, donorProfile.mobile, donorProfile.district from DonorProfile donorProfile where donorProfile.activatedFlag= :activatedFlag and donorProfile.bloodGroup = :bloodGroup and donorProfile.district = :district and donorProfile.state = :state and donorProfile.donorPreferences.donorAvailability = :donorAvailability and donorProfile.lastDonated < :lastDonated and donorProfile.lastSmsDate < :lastSmsDate and donorProfile.lastEmailDate < :lastEmailDate order by donorProfile.lastDonated asc, donorProfile.postalCode]]>
+	</query>
+	<query name="getDonorsInfoByPostalCode">
+	<![CDATA[select donorProfile.donor_uuid, donorProfile.name, donorProfile.email, donorProfile.mobile, donorProfile.district from DonorProfile donorProfile where donorProfile.activatedFlag= :activatedFlag and donorProfile.bloodGroup = :bloodGroup and donorProfile.postalCode = :postalCode and donorProfile.donorPreferences.donorAvailability = :donorAvailability and donorProfile.lastDonated < :lastDonated and donorProfile.lastSmsDate < :lastSmsDate and donorProfile.lastEmailDate < :lastEmailDate order by donorProfile.lastDonated asc]]>
+	</query>
+	<!-- <query name="getDonationRecordsByDonorId">
+	<![CDATA[select bloodDonationRecord.patientName, bloodDonationRecord.donationPlace, bloodDonationRecord.hospitalName, bloodDonationRecord.bloodDonationdate from BloodDonationRecord bloodDonationRecord where bloodDonationRecord.blood_donationrecord_uuid = :donorId order by bloodDonationRecord.bloodDonationdate desc]]>
+	</query> -->
+	<query name="getDonationRecordsByDonorId">
+	<![CDATA[from BloodDonationRecord bloodDonationRecord where bloodDonationRecord.blood_donationrecord_uuid = :donorId order by bloodDonationRecord.bloodDonationdate desc]]>
+	</query>
+	<query name="getDonationRecordById">
+	<![CDATA[from BloodDonationRecord bloodDonationRecord where bloodDonationRecord.donor_id = :recordId]]>
+	</query>
+	<query name="getDonorsByIds">
+		from DonorProfile donorProfile where donorProfile.donor_uuid in :donorIds
+	</query>	
+	<query name="getDonorsByEmailId">
+		from DonorProfile donorProfile where donorProfile.email = :email
+	</query>
+	<query name="getCredentialsById">
+		from DonorCredential donorCredential where donorCredential.donorEmail = :id
+	</query>
+	<query name="getCredentialsById_Pwd">
+	<![CDATA[select count(*) from DonorCredential donorCredential where donorCredential.donorEmail = :id and donorCredential.donorPassword=:password]]>
+	</query>
+	<query name="getDonorsCountForPostalCode">
+	<![CDATA[select count(*) from DonorProfile donorProfile where donorProfile.activatedFlag= :activatedFlag and donorProfile.bloodGroup = :bloodGroup and donorProfile.postalCode = :postalCode and donorProfile.donorPreferences.donorAvailability = :donorAvailability and donorProfile.lastDonated < :lastDonated and donorProfile.lastSmsDate < :lastSmsDate and donorProfile.lastEmailDate < :lastEmailDate order by donorProfile.lastDonated asc]]>
+	</query>
+	<query name="getDonorsCountForArea">
+	<![CDATA[select count(*) from DonorProfile donorProfile where donorProfile.activatedFlag= :activatedFlag and donorProfile.bloodGroup = :bloodGroup and donorProfile.district = :district and donorProfile.state = :state and donorProfile.donorPreferences.donorAvailability = :donorAvailability and donorProfile.lastDonated < :lastDonated and donorProfile.lastSmsDate < :lastSmsDate and donorProfile.lastEmailDate < :lastEmailDate order by donorProfile.lastDonated asc, donorProfile.postalCode]]>
+	</query>
+	
+	<query name="getTokenByMail">
+		from EmailVerification emailVerification where emailVerification.tokenId= :tokenId
+	</query>
+	
+	<query name="getDonorsRoleDetailByUserName">
+	<!-- <![CDATA[select donorProfile.name,donorProfile.donorRoles.donorRoles,donorProfile.donorRoles.userEnabled,donorProfile.donorRoles.accountExpired,donorProfile.donorRoles.credentialExpired,donorProfile.donorRoles.accountLocked from DonorProfile donorProfile where donorProfile.email=:username]]> -->
+		from DonorProfile donorProfile where donorProfile.email=:username
+	</query>
+	<query name="getAllFeedbacks">
+		from Feedback feedback where feedback.verified= :verified
+	</query>
+	<query name="verifyFeedbacks">
+		update Feedback feedback set feedback.verified= :verified where feedback.uuid= :uuid
+	</query>
+</hibernate-mapping>

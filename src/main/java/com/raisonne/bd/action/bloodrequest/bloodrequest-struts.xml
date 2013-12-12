@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+		<constant name="struts.oval.validateJPAAnnotations" value="true" />
+
+	<package name="ajaxRenderer" extends="json-default" namespace="/request">
+		<action name="dropDownRenderer"  class="dropDownRendererAction" method="getDistrict">
+			<result type="json">
+			<param name="excludeProperties">
+			 emailId,uniqueIdStatus,donorService
+			</param>
+			</result>
+		</action>
+		
+		<action name="scrollerUtil"  class="scrollerUtilAction">
+			<result type="json">
+			<param name="excludeProperties">
+			 bloodRequestService
+			</param>
+			</result>
+		</action>
+		
+		</package>
+		
+		<package name="ajaxBloodRequest" extends="json-default">
+		<action name="getBloodRequestDetails"  class="bloodRequestUpdateAction" method="getBloodRequestById_ajax">
+			<result type="json">
+			<param name="excludeProperties">
+			  bloodRequestService,districts,states,bloodRequestPage,message,user_gender
+			</param>
+			</result>
+		</action>
+		
+		
+		
+		</package>
+	
+	<!--  S:Package for blood request actions	 -->
+		 <package name="bloodRequestActions" extends="oval-default" namespace="/request">
+	<action name="blood-request" class="bloodRequestAction" method="getBloodRequest">
+			<result>${applicationFrame}</result>
+		</action>
+		
+		<action name="save-blood-request" class="bloodRequestAction" method="saveBloodRequest">
+		<interceptor-ref name="ovalValidationStack"/>
+			<result>${applicationFrame}</result>
+			<result name="input">/WEB-INF/templates/application/applicationframe.jsp</result>	
+		</action>
+		
+		<action name="get-blood-request" class="bloodRequestUpdateAction" method="getBloodRequetById">
+		<result>${applicationFrame}</result>
+		</action>
+		
+		<action name="update-blood-request" class="bloodRequestUpdateAction" method="updateBloodRequest">
+			<result>${applicationFrame}</result>
+		</action>
+		
+		<action name="load-unverified-requests" class="bloodRequestVerificationAction" method="loadUnverifiedBloodRequests">
+			<result>${applicationFrame}</result>
+		</action>
+		
+		<action name="load-verified-requests" class="bloodRequestVerificationAction" method="loadVerifiedBloodRequests">
+			<result>/WEB-INF/templates/bloodrequest/verifiedBloodRequests.jsp</result>
+		</action>
+		
+		<action name="load-blood-requests" class="bloodRequestVerificationAction" method="loadBloodRequests">
+			<result>${applicationFrame}</result>
+		</action>
+		<action name="verify-blood-requests" class="bloodRequestVerificationAction" method="verifyBloodRequest">
+			<result>${applicationFrame}</result>
+		</action>
+		<action name="update-requests" class="bloodRequestVerificationAction" method="updateVerifiedRequests">
+			<result>${applicationFrame}</result>
+		</action>
+		
+		
+		
+	
+	</package>
+	
+	
+	<!--   E:Package for blood request actions		-->
+	  </struts>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="trigger-action-mapping" extends="struts-default">
+		<action name="createTriggersView" class="com.raisonne.quartz.scheduler.trigger.action.TriggerUIInitializationAction" method="prepareTriggerUI">
+			<result>${applicationFrame}</result>
+			<result name="input">/WEB-INF/templates/scheduler/createtriggers.jsp</result>
+		</action>
+		<action name="createTrigger" class="com.raisonne.quartz.scheduler.trigger.action.ScheduleJobTriggerAction" method="scheduleJobTrigger">
+			<result>${applicationFrame}</result>
+			<result name="input">${applicationFrame}</result>
+		</action>
+		<action name="triggerGroupDropDown" class="com.raisonne.quartz.scheduler.trigger.action.TriggerUIInitializationAction" method="triggerGroupDropDown">
+		<result>${applicationFrame}</result>
+		</action>
+   </package>
+   <package name="template-action-mapping" extends="struts-default">
+		<action name="createTemplate" class="com.raisonne.quartz.scheduler.trigger.action.TriggerUIInitializationAction" method="selectTemplate">
+			<result >${template}</result>
+		</action>
+   </package>
+ 
+</struts>

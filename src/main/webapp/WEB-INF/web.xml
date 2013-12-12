@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app id="starter" version="2.4" 
+         xmlns="http://java.sun.com/xml/ns/j2ee" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	
+	<display-name>Blood Donor database</display-name>
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:applicationContext*.xml,classpath*:com/raisonne/bd/custom/preAuthentication/spring-security.xml</param-value>
+	</context-param>
+	
+	<context-param>
+         <param-name>quartz:config-file</param-name>
+         <param-value>/custom_quartz.properties</param-value>
+     </context-param>
+     <context-param>
+         <param-name>quartz:shutdown-on-unload</param-name>
+         <param-value>true</param-value>
+     </context-param>
+     <context-param>
+         <param-name>quartz:wait-on-shutdown</param-name>
+         <param-value>false</param-value>
+     </context-param>
+     <context-param>
+         <param-name>quartz:start-scheduler-on-load</param-name>
+         <param-value>true</param-value>
+     </context-param> 
+	
+	   <!-- Spring Security -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	
+	<!-- Filters -->
+	 <filter>
+        <filter-name>action2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+        
+    </filter>
+		
+    <filter-mapping>
+        
+          <filter-name>action2</filter-name>
+          <url-pattern>/*</url-pattern>
+          <dispatcher>REQUEST</dispatcher>    
+         <dispatcher>FORWARD</dispatcher>
+         <dispatcher>INCLUDE</dispatcher>
+         <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+	
+		
+	
+	
+	<!-- Listeners -->
+	<listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+        
+    </listener>
+    <listener>
+    <listener-class>com.raisonne.bd.listener.BDContextListener</listener-class>
+    </listener>
+     <listener>
+         <listener-class>
+             org.quartz.ee.servlet.QuartzInitializerListener
+         </listener-class>
+     </listener>
+      <listener>
+         <listener-class>
+             com.raisonne.quartz.ee.QuartzSchdularInitializerListener
+         </listener-class>
+     </listener> 
+ 
+    <!-- Servlets -->
+ 
+    <servlet>
+    	<servlet-name>jspSupportServlet</servlet-name>
+    	<servlet-class>org.apache.struts2.views.JspSupportServlet</servlet-class>
+    	<load-on-startup>5</load-on-startup>
+    </servlet>
+    
+   <!--  <error-page>
+       <exception-type>java.lang.Exception</exception-type>
+       <location>/WEB-INF/templates/error/error.jsp</location>
+    </error-page>
+    
+     <error-page>
+       <error-code>404</error-code>
+       <location>/WEB-INF/templates/error/error.jsp</location>
+    </error-page> -->
+    
+    <!-- Welcome file lists -->
+    <welcome-file-list>
+        <welcome-file>welcome</welcome-file>
+        <!-- <welcome-file>default.jsp</welcome-file>
+        <welcome-file>index.html</welcome-file> -->
+    </welcome-file-list>
+
+</web-app>

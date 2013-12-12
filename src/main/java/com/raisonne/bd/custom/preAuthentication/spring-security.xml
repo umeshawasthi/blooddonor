@@ -1,0 +1,67 @@
+
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<global-method-security secured-annotations="enabled" />
+
+	<beans:bean id="preAuthenticatedProcessingFilterEntryPoint"
+		class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint"></beans:bean>
+	<beans:bean id="accessDeniedHandler"
+		class="com.raisonne.bd.custom.preAuthentication.CustomAccessDeniedHandler">
+		<beans:property name="accessDeniedUrl"
+			value="/blood_donors/account/access-denied" />
+	</beans:bean>
+
+	<http auto-config="false" entry-point-ref="preAuthenticatedProcessingFilterEntryPoint">
+
+		<intercept-url pattern="/blood_donors/account/get-donor-by-id"
+			access="ROLE_ADMIN,ROLE_USER" />
+		<intercept-url pattern="/blood_donors/account/update-donor-profile"
+			access="ROLE_ADMIN,ROLE_USER" />
+		<intercept-url pattern="/blood_donors/account/get-donor-credential"
+			access="ROLE_USER" />
+		<intercept-url pattern="/blood_donors/account/update-donor-credential"
+			access="ROLE_USER" />
+		<intercept-url pattern="/blood_donors/search/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/blood_donors/accountLogin/donor-login"
+			access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/blood_donors/accountLogin/donor-logout"
+			access="IS_AUTHENTICATED_FULLY" />
+
+		<access-denied-handler ref="accessDeniedHandler" />
+
+		<!-- Was giving some exception so have commented it Umesh Awasthi 
+		<session-management>
+			<concurrency-control max-sessions="1"
+				error-if-maximum-exceeded="true" expired-url="/blood_donors/accountLogin/login?simple=true" />
+		</session-management> -->
+
+
+		<custom-filter ref="preAuthFilter" position="PRE_AUTH_FILTER" />
+	</http>
+
+	<beans:bean id="preAuthFilter"
+		class="com.raisonne.bd.custom.preAuthentication.PreAuthFilter">
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+	</beans:bean>
+
+	<beans:bean id="preAuthProvider"
+		class="org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider">
+		<beans:property name="preAuthenticatedUserDetailsService"
+			ref="myUserDetailsService" />
+	</beans:bean>
+
+	<beans:bean id="myUserDetailsService"
+		class="com.raisonne.bd.custom.preAuthentication.UserDetailService">
+		<beans:property name="donorService" ref="donorService" />
+	</beans:bean>
+
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider ref='preAuthProvider' />
+	</authentication-manager>
+
+</beans:beans> 

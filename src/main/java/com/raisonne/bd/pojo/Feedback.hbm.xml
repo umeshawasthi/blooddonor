@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 9, 2011 8:00:02 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+ <class name="com.raisonne.bd.pojo.Feedback" table="feedback">
+  <id name="uuid" type="java.lang.String">
+   <column length="45" name="uuid"/>
+   <generator class="uuid"/>
+  </id>
+  
+  <property generated="never" lazy="false" name="donorName" type="string">
+   <column length="45" name="donorName"/>
+  </property>  
+ 
+  <property generated="never" lazy="false" name="email" type="string">
+   <column length="45" name="email" not-null="true" unique="true"/>
+  </property>
+  
+  <property generated="never" lazy="false" name="contact" type="string">
+   <column name="contactNo" not-null="true"/>
+  </property>
+
+  <property generated="never" lazy="false" name="message" type="string">
+   <column length="3000" name="message" not-null="true"/>
+  </property>
+
+  <property generated="never" lazy="false" name="verified" type="boolean">
+   <column name="verified"/>
+  </property>
+  <property generated="never" lazy="false" name="feedbackTime"
+   not-null="false" type="timestamp">
+   <column length="19" name="feedbackTime"/>
+    </property>
+   
+ </class>
+</hibernate-mapping>

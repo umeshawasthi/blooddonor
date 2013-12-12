@@ -1,0 +1,67 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em,
+font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody,
+ tfoot, thead, tr, th, td {
+border:0pt none;
+font-family:inherit;
+font-size:100%;
+font-style:inherit;
+font-weight:inherit;
+margin:0pt;
+padding:0pt;
+vertical-align:baseline;
+}
+body{
+background:#fff none repeat scroll 0%;
+line-height:1;
+font-size: 12px;
+font-family:arial,sans-serif;
+margin:0pt;
+height:100%;
+}
+table {
+border-collapse:separate;
+border-spacing:0pt;
+}
+caption, th, td {
+font-weight:normal;
+text-align:left;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+content:"";
+}
+blockquote, q {
+quotes:"" "";
+}
+a{
+cursor: pointer;
+text-decoration:none;
+}
+br.both{
+clear:both;
+}
+
+
+/*popup*/
+.popupOverlayBg{display:none;position:fixed;_position:absolute; /* hack for internet explorer 6*/height:100%;width:100%;top:0;left:0;background:#000000;border:1px solid #cecece;z-index:9;}
+.popupContainer{display:none;position:fixed;_position:absolute; /* hack for internet explorer 6*/
+background:#FFFFFF;border:2px solid #cecece;z-index:10;padding:0 0 8px 0;font-size:13px;}
+.popupContainer img{padding-bottom:5px;}
+.popupContainer .hd{background:#cecece;padding:8px 10px;border-bottom:2px solid #ddd;margin-bottom:10px;}
+.popupContainer .hd .ttl{float:left;font-size:14px;font-weight:bold;color:#666;}
+.popupContainer .close a{padding-top:2px;float:right;font-size:11px;font-weight:bold;color:#666;text-decoration:none;}
+/* for popup form */
+.popupForm .row{width:100%;float:left;padding:3px 0;}
+.popupForm .row .inputLabel{float:left;text-align:right;width:125px;padding:3px 0 0 0;font-weight:bold;color:#666;}
+.popupForm .row .inputField{padding-left:130px;}
+.popupForm .row .asterisk{color:red;}
+.popupForm .row .textField{border:1px solid #b3b3b3;padding:2px 3px;width:92%;font-size:12px;float:left;}
+.popupForm .row .selectField{border:1px solid #b3b3b3;padding:2px 3px;width:198px;font-size:12px;float:left;}
+.popupForm .row label.error{padding:2px 0 0 0;font-size:11px;float:left;width:100%;color:#ff0000;}
+.popupForm .row .chkitem{width:100px!important;float:left;}
+.popupForm .row .chkitem label.chklabel{width:auto!important; font-weight:normal!important;}
+.popupForm input.required,.popupForm textarea.required,.popupForm select.required{color:#666!important;}
+.popupForm input.error,.popupForm select.error{color:#ff0000!important;}
+.popupForm .submitBtn{width:205px;padding:10px 5px 5px 150px;float:left;}
+/**/
+
+

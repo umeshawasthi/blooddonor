@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table-filter match-schema="blood_donation" match-name=".*" />
+	<table-filter match-catalog="blood_donation"
+		match-name="blood_donationrecord" />
+	<table-filter match-catalog="blood_donation"
+		match-name="blood_type" />
+	<table-filter match-catalog="blood_donation"
+		match-name="donor_credential" />
+	<table-filter match-catalog="blood_donation"
+		match-name="donor_preferences" />
+	<table-filter match-catalog="blood_donation"
+		match-name="donor_profile" />
+	<table catalog="blood_donation" name="donor_credential"></table>
+	<table catalog="blood_donation" name="blood_type"></table>
+	<table catalog="blood_donation" name="donor_profile"></table>
+	<table catalog="blood_donation" name="donor_preferences"></table>
+	<table catalog="blood_donation" name="blood_donationrecord"></table>
+	<table catalog="blood_donation" name="donor_roles"></table>
+	<table catalog="blood_donation" name="feedback"></table>
+</hibernate-reverse-engineering>

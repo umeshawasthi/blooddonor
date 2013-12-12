@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 2, 2011 12:27:39 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.raisonne.bd.pojo.BloodType" table="blood_type" catalog="blood_donation">
+        <id name="uuid" type="string">
+            <column name="uuid" length="45" />
+            <generator class="assigned" />
+        </id>
+        <property name="bloodType" type="string">
+            <column name="blood_type" length="45" />
+        </property>
+        <set name="donorProfiles" table="donor_profile" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="blood_type_id" length="45" />
+            </key>
+            <one-to-many class="com.raisonne.bd.pojo.DonorProfile" />
+        </set>
+    </class>
+</hibernate-mapping>

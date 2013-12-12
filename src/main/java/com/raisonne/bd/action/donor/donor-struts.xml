@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.oval.validateJPAAnnotations" value="true" />
+
+	<!-- Package to handle filling all drop down and handling them -->
+
+	<package name="dropDownRenderer" extends="json-default"
+		namespace="/search">
+		<action name="dropDownRenderer" class="dropDownRendererAction"
+			method="getDistrict">
+			<result type="json">
+				<param name="excludeProperties">
+					emailId,uniqueIdStatus,donorService
+				</param>
+			</result>
+		</action>
+
+		<action name="mailDonorInformation" class="mailDonorInfoAction">
+			<result type="json">
+				<param name="excludeProperties">
+					mailSender,donorService,simpleMailMessage,sender,context
+				</param>
+			</result>
+		</action>
+
+		<action name="scrollerUtil" class="scrollerUtilAction">
+			<result type="json">
+				<param name="excludeProperties">
+					bloodRequestService
+				</param>
+			</result>
+		</action>
+
+
+	</package>
+
+	<package name="ajaxDropDownRenderer" extends="json-default"
+		namespace="/account">
+
+
+		<action name="verifyEmail" class="checkUniqueConstraintAction"
+			method="verifyEmail">
+			<result type="json"></result>
+		</action>
+
+		<action name="dropDownRenderer" class="dropDownRendererAction"
+			method="getDistrict">
+			<result type="json">
+				<param name="excludeProperties">
+					emailId,uniqueIdStatus,donorService
+				</param>
+			</result>
+		</action>
+
+		<action name="scrollerUtil" class="scrollerUtilAction">
+			<result type="json">
+				<param name="excludeProperties">
+					bloodRequestService
+				</param>
+			</result>
+		</action>
+	</package>
+
+	<package name="ajaxDropDownRendererSecured" extends="json-default"
+		namespace="/account/donationhistory">
+
+
+
+		<action name="dropDownRenderer" class="dropDownRendererAction"
+			method="getDistrict">
+			<result type="json">
+				<param name="excludeProperties">
+					emailId,uniqueIdStatus,donorService
+				</param>
+			</result>
+		</action>
+
+
+	</package>
+
+	<package name="ajaxDropDownRendererLogin" extends="json-default"
+		namespace="/accountLogin">
+		<action name="dropDownRenderer" class="dropDownRendererAction"
+			method="getDistrict">
+			<result type="json">
+				<param name="excludeProperties">
+					emailId,uniqueIdStatus,donorService
+				</param>
+			</result>
+		</action>
+	</package>
+	<!-- end of package declaration **************************** -->
+
+	<package name="donorSearchActions" extends="struts-default"
+		namespace="/search">
+
+
+		<action name="search-donor-by-area" class="donorSearchAction"
+			method="initDonorSearch">
+			<result>${applicationFrame}</result>
+		</action>
+
+		<action name="area-component" class="donorSearchAction" method="initDonorSearch">
+			<result>/WEB-INF/templates/donor/area_component.jsp</result>
+		</action>
+
+		<action name="donor-search-by-area" class="donorSearchAction"
+			method="getDonorsByArea">
+			<result name="input">${applicationFrame}</result>
+			<result>${applicationFrame}</result>
+		</action>
+
+		<action name="search-donor-by-postal-code" class="donorSearchAction"
+			method="initDonorSearch">
+			<result>${applicationFrame}</result>
+		</action>
+
+		<action name="postal-component" class="donorSearchAction"
+			method="initDonorSearch">
+			<result>/WEB-INF/templates/donor/postal_component.jsp</result>
+		</action>
+		<action name="donor-search-by-postal-code" class="donorSearchAction"
+			method="getDonorsByPostalCode">
+			<result name="input">${applicationFrame}</result>
+			<result>${applicationFrame}</result>
+		</action>
+	</package>
+
+	<package name="donorRegistrationActions" extends="oval-default"
+		namespace="/account">
+		<action name="donor-registration" class="donorRegistrationAction"
+			method="registerDonor">   <!-- donorRegistration -->
+			<interceptor-ref name="ovalValidationStack" />
+			<result>${applicationFrame}</result>
+			<result name="input">/WEB-INF/templates/application/applicationframe.jsp
+			</result>
+		</action>
+		<action name="get-donor-by-id" class="donorUpdateAction"
+			method="getDonorProfileById">
+			<result>${applicationFrame}</result>
+		</action>
+		<action name="update-donor-profile" class="donorUpdateAction"
+			method="updateDonorProfile">
+			<result>${applicationFrame}</result>
+		</action>
+		<action name="register" class="donorRegistrationAction" method="getListData"> <!-- registration page -->
+			<result>${applicationFrame}</result>
+		</action>
+		<action name="sign-up" class="loginSelector">
+			<result>${applicationFrame}</result>
+		</action>
+		<action name="get-donor-credential" class="donorUpdateAction"
+			method="getDonorCredential">
+			<result>${applicationFrame}</result>
+		</action>
+		<action name="update-donor-credential" class="donorUpdateAction"
+			method="updateDonorCredential">
+			<result>${applicationFrame}</result>
+		</action>
+		<action name="donor-verfication" class="emailVerification">
+			<result>${applicationFrame}</result>
+		</action>
+
+		<action name="access-denied" class="accessDeniedHandler"
+			method="accessDeniedPage">
+			<result>${applicationFrame}</result>
+		</action>
+
+		<action name="donor-verfication" class="emailVerification">
+			<result>${applicationFrame}</result>
+		</action>
+	</package>
+	<package name="bloodDonationRecordActions" extends="struts-default"
+		namespace="/account/donationhistory">
+		<action name="create-donation-record" class="donationHistoryAction"
+			method="createDonationHistory">
+			<result>${applicationFrame}</result>
+		</action>
+		<action name="donation-history-options" class="donationHistoryAction"
+			method="donationHistoryOptions">
+			<result>${applicationFrame}</result>
+		</action>
+		<action name="save-donation-record" class="donationHistoryAction"
+			method="saveDonationHistory">
+			<result>${applicationFrame}</result>
+		</action>
+		<action name="get-donation-record" class="donationHistoryAction"
+			method="loadDonationHistoryById">
+			<result>${applicationFrame}</result>
+		</action>
+		<action name="get-donation-record-to-update" class="donationHistoryAction"
+			method="loadDonationHistoryById">
+			<result>${applicationFrame}</result>
+		</action>
+		<action name="update-donation-record" class="donationHistoryAction"
+			method="updateDonationHistory">
+			<result>${applicationFrame}</result>
+		</action>
+		<action name="get-donation-records" class="donationHistoryAction"
+			method="loadDonationHistoryForDonor">
+			<result>${applicationFrame}</result>
+		</action>
+		<action name="view-donation-records" class="donationHistoryAction"
+			method="loadDonationHistoryForDonor">
+			<result>${applicationFrame}</result>
+		</action>
+	</package>
+
+	<package name="bloodDonationFeedbackActions" extends="struts-default"
+		namespace="/feedback">
+
+		<action name="user-feedback" class="feedbackAction" method="loadAllFeedbacks">
+			<result>${applicationFrame}</result>
+		</action>
+		<action name="donor-feedback" class="feedbackAction">
+			<result>${applicationFrame}</result>
+		</action>
+		<action name="load-unverified-feedbacks" class="feedbackAction"
+			method="loadUnverifiedFeedbacks">
+			<result>${applicationFrame}</result>
+		</action>
+		<action name="verify-feedback" class="feedbackAction" method="verifyFeedbacks">
+			<result>${applicationFrame}</result>
+		</action>
+		<action name="reject-feedback" class="feedbackAction" method="verifyFeedbacks">
+			<result>${applicationFrame}</result>
+		</action>
+	</package>
+</struts>

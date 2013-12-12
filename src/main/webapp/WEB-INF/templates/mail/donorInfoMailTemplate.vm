@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html"; charset="iso-8859-1">
+<title>Blood Donor(s) Information</title>
+</head>
+<body>
+<table width="600" border="0" cellspacing="0" cellpadding="10" bgcolor="#f2f2f2">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="" bgcolor="#fff">
+        <tr>
+          <td align="left" valign="top"><table width="100%" border="0" cellspacing="15" cellpadding="0">
+              <tr>
+                <td><img src="${site_url}/static/media/images/email/logo.gif" height="79" width="243" alt="Donate Blood"></td>
+              </tr>
+              <tr>
+              	<td>
+                	<table width="100%" border="0" cellspacing="1" cellpadding="0" style="font-size:12px;color:#fff;font-weight:bold;font-family:Arial, Helvetica, sans-serif;">
+  <tr>
+    <td align="center" valign="middle" style="background:#b50000;padding:5px;"><a href="${site_url}/account/sign-up" style="color:#fff; text-decoration:none;">Register</a></td>
+    <td align="center" valign="middle" style="background:#b50000;padding:5px;"><a href="${site_url}/request/blood-request" style="color:#fff;text-decoration:none;">Post Blood Request</a></td>
+    <td align="center" valign="middle" style="background:#b50000;padding:5px;"><a  href="${site_url}/request/why-donate-blood" style="color:#fff;text-decoration:none;">Why Donate Blood</a></td>
+    <td align="center" valign="middle" style="background:#b50000;padding:5px;"><a  href="${site_url}" style="color:#fff;text-decoration:none;">Search Donar</a></td>
+  </tr>
+</table>
+
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size:16px;color:#007A00; font-weight:bold;font-family:Arial, Helvetica, sans-serif;">Hi</td>
+              </tr>
+              <tr>
+                <td style="font-size:12px;color:#666;font-family:Arial, Helvetica, sans-serif;line-height:140%;">
+				Please find below blood donors information as requested by you: 
+				</td>
+              </tr>
+              <tr>
+                <td align="left" valign="top"><table width="100%" border="0" cellspacing="1" cellpadding="0" style="font-size:12px;color:#666;font-family:Arial, Helvetica, sans-serif;">
+                    <tr>
+                      <td align="left" valign="top" style="background:#dddddd;padding:5px;"><strong>Donor Name</strong></td>
+                      <td align="left" valign="top" style="background:#dddddd;padding:5px;"><strong>Contact No</strong></td>
+                      <td align="left" valign="top" style="background:#dddddd;padding:5px;"><strong>Blood group</strong></td>
+                      <td align="left" valign="top" style="background:#dddddd;padding:5px;"><strong>Preferred contact time</strong></td>
+                    </tr>
+                    <tr>
+                      <td height="1" align="left" valign="top" colspan="4" style="background:#b7b8ba;"><img src=""${site_url}/static/media/images/email/spacer.gif" height="1" width="1" alt=""></td>
+                    </tr>
+					#foreach( ${donorInfo} in ${donorInfos})
+                    <tr>
+                      <td align="left" valign="top" style="background:#fff;padding:5px;">${donorInfo.name}</td>
+                      <td align="left" valign="top" style="background:#fff;padding:5px;">${donorInfo.mobile}, ${donorInfo.secondaryContactNumber}</td>
+                      <td align="left" valign="top" style="background:#fff;padding:5px;">${donorInfo.bloodGroup}</td>
+                      <td align="left" valign="top" style="background:#fff;padding:5px;"> ${donorInfo.donorPreferences.preferedContactTime}</td>
+                    </tr>
+					#end
+                    <tr>
+                      <td height="1" align="left" valign="top" colspan="4" style="background:#b7b8ba;"><img src=""${site_url}/static/media/images/email/spacer.gif" height="1" width="1" alt=""></td>
+                    </tr>
+                    
+                  </table></td>
+              </tr>
+              <tr>
+                <td align="left" valign="top" style="font-size:12px;color:#666;font-family:Arial, Helvetica, sans-serif;line-height:140%;">
+				You can also help people, who need blood, by registering at: www.donateblood.com.<br/><br/>
+				</td>
+              </tr>
+			  <tr>
+			   <td>Thanks,<br/>Team@BloodDonors</td>
+			  </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td align="center" valign="top"><p style="margin:0 0 10px 0;padding:0;font-size:12px;color:#666;font-family:Arial, Helvetica, sans-serif;line-height:140%;">
+    <a  href="${site_url}/about-us" style="color:#003399;">About Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="${site_url}/faq" style="color:#003399;">FAQ</a>&nbsp;&nbsp;
+   
+  </tr>
+</table>
+</body>
+</html>

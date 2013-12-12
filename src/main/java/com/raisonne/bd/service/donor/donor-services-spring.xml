@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<bean id="donorService" class="com.raisonne.bd.service.donor.impl.DonorServiceImpl"
+		scope="prototype">
+		<property name="donorDao" ref="donorDao" />
+		<property name="donorConverter" ref="donorConverter" />
+		<property name="sender" ref="sender" />
+		<property name="mailSender" ref="mailSender" />
+		<property name="simpleMailMessage" ref="simpleMailMessage" />
+	</bean>
+	<bean id="donorDao" class="com.raisonne.bd.dao.donor.impl.DonorDaoImpl" parent="genericDao"
+		scope="prototype" />
+
+</beans>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- This xml file is the centeral control section All Struts2 actions will 
+		be created and will be injected by spring. and this file will be responsible 
+		for providing details to the Spring container for various actions that needs 
+		to be created and injected. -->
+
+	<bean id="welcomeAction" class="com.raisonne.bd.WelcomeAction" scope="prototype"/>
+	
+	
+	<bean id="donorSearchAction" class="com.raisonne.bd.action.donor.DonorSearch"
+		scope="prototype">
+		<property name="donorService" ref="donorService" />
+	</bean>
+	<bean id="donorUpdateAction" class="com.raisonne.bd.action.donor.DonorUpdate"
+		scope="prototype">
+		<property name="donorService" ref="donorService" />
+	</bean>
+
+	<bean id="dropDownRendererAction" class="com.raisonne.bd.action.donor.DropDownRenderer" scope="prototype">	   
+	  </bean>
+	  
+	  <bean id="checkUniqueConstraintAction" class="com.raisonne.bd.action.donor.UniqueConstraint" scope="prototype">
+	    <property name="donorService" ref="donorService" />	   
+	  </bean>
+
+	<bean id="donorRegistrationAction" class="com.raisonne.bd.action.donor.DonorRegistration"
+		scope="prototype">
+		<property name="donorService" ref="donorService" />
+	</bean>
+	<bean id="mailDonorInfoAction" class="com.raisonne.bd.action.donor.MailDonorInfo"
+		scope="prototype">
+		<property name="donorService" ref="donorService" />
+		<property name="sender" ref="sender" />
+		<property name="mailSender" ref="mailSender" />
+		<property name="simpleMailMessage" ref="simpleMailMessage" />
+	</bean>
+	
+	<bean id="donationHistoryAction" class="com.raisonne.bd.action.donor.DonorHistory"
+		scope="prototype">
+		<property name="donorService" ref="donorService" />
+	</bean>
+	
+	<bean id="emailVerification" class="com.raisonne.bd.action.donor.EmailVerification"
+		scope="prototype">
+		<property name="donorService" ref="donorService" />
+	</bean>
+
+<bean id="donorFeedbackDTO" class="com.raisonne.bd.dto.donor.FeedbackDTO"
+		scope="prototype"/>
+	<bean id="feedbackAction" class="com.raisonne.bd.action.donor.FeedbackAction"
+		scope="prototype">
+		<property name="donorService" ref="donorService" />
+		<property name="donorFeedbackDTO" ref="donorFeedbackDTO" />
+		<property name="sender" ref="sender" />
+		<property name="mailSender" ref="mailSender" />
+		<property name="simpleMailMessage" ref="simpleMailMessage" />
+	</bean>
+</beans>

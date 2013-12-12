@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="devMode" value="true"/>
+	<constant name="struts.action.excludePattern" value="/static/.*" />
+	<constant name="applicationFrame" value="/WEB-INF/templates/application/applicationframe.jsp"/>
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"/>
+	<constant name="struts.ui.theme" value="simple"/>
+	<include file="com/raisonne/bd/action/donor/donor-struts.xml"/>
+	<include file="com/raisonne/bd/action/admin/admin-struts.xml"/>
+	<include file="com/raisonne/oauth/action/oauth-struts.xml"/>
+	<include file="com/raisonne/bd/login/action/login-struts.xml"/>
+	<include file="com/raisonne/bd/action/bloodrequest/bloodrequest-struts.xml"/>
+	<include file="com/raisonne/quartz/scheduler/job/action/job-action-mapping.xml"/>
+	<include file="com/raisonne/quartz/scheduler/trigger/action/trigger-action-mapping.xml"/>
+
+	<package name="default" extends="struts-default">
+		<action name="welcome" class="welcomeAction">
+			<result>/WEB-INF/templates/application/applicationframe.jsp</result>
+		</action>
+		<action name="about-us" class="welcomeAction" method="aboutUs">
+		   <result>/WEB-INF/templates/application/applicationframe.jsp</result>
+		</action>
+		<action name="team" class="welcomeAction" method="team">
+		   <result>/WEB-INF/templates/application/applicationframe.jsp</result>
+		</action>
+		<action name="why-donate-blood" class="welcomeAction" method="whyDonateBlood">
+		   <result>/WEB-INF/templates/application/applicationframe.jsp</result>
+		</action>
+		
+		<action name="invite-friends" class="welcomeAction" method="inviteFriends">
+		   <result>/WEB-INF/templates/application/applicationframe.jsp</result>
+		</action>
+		
+		
+		<action name="createNewGroup" class="com.raisonne.quartz.scheduler.action.SchedulerGroupAction" method="prepareGroupUI">
+	       <result>${applicationFrame}</result>
+	    </action>
+	    <action name="createGroup" class="com.raisonne.quartz.scheduler.action.SchedulerGroupAction" method="createGroup">
+	        <result>${applicationFrame}</result>
+	         <result name="input">${applicationFrame}</result>
+	    </action>
+		
+   </package>
+</struts>
