@@ -1,5 +1,6 @@
 package com.raisonne.bd.action.donor;
 
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Map;
 
@@ -48,6 +49,10 @@ public class BaseAction extends ActionSupport{
 			dto.setContactNumber(bloodRequestDTO.getMobileNumber());
 			dto.setLocation(bloodRequestDTO.getLocation());
 			dto.setState(StateInfoUtils.getStates().get(bloodRequestDTO.getState()));
+			SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+			final String date=sdf.format(bloodRequestDTO.getRequiredDate());
+			dto.setRequiredBlooddate(date);
+			
 			dto.setUuid(bloodRequestDTO.getUuid());
 			cache.put(bloodRequestDTO.getUuid(), dto);
 			ActionContext.getContext().getApplication().put("bloodRequestCache", (Map<Integer, BloodRequestScrollerDTO>)Collections.synchronizedMap(cache));
