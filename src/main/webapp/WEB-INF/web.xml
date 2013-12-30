@@ -12,7 +12,7 @@
 		<param-value>classpath*:applicationContext*.xml,classpath*:com/raisonne/bd/custom/preAuthentication/spring-security.xml</param-value>
 	</context-param>
 	
-	<context-param>
+	<!-- <context-param>
          <param-name>quartz:config-file</param-name>
          <param-value>/custom_quartz.properties</param-value>
      </context-param>
@@ -27,7 +27,7 @@
      <context-param>
          <param-name>quartz:start-scheduler-on-load</param-name>
          <param-value>true</param-value>
-     </context-param> 
+     </context-param>  -->
 	
 	   <!-- Spring Security -->
 	<filter>
@@ -69,7 +69,7 @@
     <listener>
     <listener-class>com.raisonne.bd.listener.BDContextListener</listener-class>
     </listener>
-     <listener>
+   <!--   <listener>
          <listener-class>
              org.quartz.ee.servlet.QuartzInitializerListener
          </listener-class>
@@ -78,7 +78,7 @@
          <listener-class>
              com.raisonne.quartz.ee.QuartzSchdularInitializerListener
          </listener-class>
-     </listener> 
+     </listener>  -->
  
     <!-- Servlets -->
  

@@ -42,13 +42,14 @@ public class BloodRequest implements java.io.Serializable {
 	private String purpose;
 	private boolean bloodRequestUpdated=false;
 	private boolean verificationFlag=false;
+	private Date requiredDate;
 
 	public BloodRequest() {
 	}
 
 	public BloodRequest(int uuid, String name, Integer age, String mobileNumber,
 			char gender, String bloodGroup, Integer unitNeeded, String hospitalName,
-			String state, String location, Date creationDate, Date lastUpdated,String patientName,String purpose,boolean verificationFlag) {
+			String state, String location, Date creationDate, Date lastUpdated,String patientName,String purpose,boolean verificationFlag, Date requiredDate) {
 		this.uuid = uuid;
 		this.name = name;
 		this.age = age;
@@ -64,13 +65,14 @@ public class BloodRequest implements java.io.Serializable {
 		this.patientName=patientName;
 		this.purpose=purpose;
 		this.verificationFlag=verificationFlag;
+		this.requiredDate=requiredDate;
 	}
 
 	public BloodRequest(int uuid, String name, Integer age, String mobileNumber,
 			String secondaryContact, char gender, String bloodGroup,
 			Integer unitNeeded, String hospitalName, String state, String district,
 			String location, Integer postalCode, Date creationDate,
-			Date lastUpdated,String patientName,String purpose,boolean verificationFlag) {
+			Date lastUpdated,String patientName,String purpose,boolean verificationFlag,Date requiredDate)  {
 		this.uuid = uuid;
 		this.name = name;
 		this.age = age;
@@ -89,6 +91,7 @@ public class BloodRequest implements java.io.Serializable {
 		this.patientName=patientName;
 		this.purpose=purpose;
 		this.verificationFlag=verificationFlag;
+		this.requiredDate=requiredDate;
 	}
 
 	public int getUuid() {
@@ -244,5 +247,15 @@ public class BloodRequest implements java.io.Serializable {
 	public void setVerificationFlag(boolean verificationFlag) {
 		this.verificationFlag = verificationFlag;
 	}
+
+	public Date getRequiredDate() {
+		return requiredDate;
+	}
+
+	public void setRequiredDate(Date requiredDate) {
+		this.requiredDate = requiredDate;
+	}
+	
+	
 
 }

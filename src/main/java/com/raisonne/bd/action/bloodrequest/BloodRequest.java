@@ -81,9 +81,14 @@ public class BloodRequest extends BaseAction implements Preparable{
 		
 		BloodRequestStatus status=bloodRequestService.saveBloodRequest(bloodRequestDTO);
 		if(status.isResult()){
-			message="Your Blood Request has been saved successfully</br>";
+			StringBuilder messageBuilder=new StringBuilder();
+			messageBuilder.append("Your Blood Request has been saved successfully</br>");
+			messageBuilder.append("Your request number is: "+status.getRefrence_id()+"</br>");
+			messageBuilder.append("Please use above refrence number for editing your request or any future communication.");
+			setMessage(messageBuilder.toString());
+			/*message="Your Blood Request has been saved successfully</br>";
 		    message=message+"Your request number is: "+status.getRefrence_id()+"</br>" ;
-		    message=message+"Please use above refrence number for editing your request or any communication.";
+		    message=message+"Please use above refrence number for editing your request or any future communication.";*/
 		}
 		else
 			message="Error while saving blood request";

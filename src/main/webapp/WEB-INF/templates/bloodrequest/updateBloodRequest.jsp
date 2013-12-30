@@ -199,33 +199,44 @@ em {
 
 
 			<div class="row">
-				<div class="col">
-					<div class="inputLabel">
-						Postal Code<span class="asterisk">*</span>
-					</div>
-					<div class="inputField">
-						<div class="flW">
-							<s:textfield label="Pin Code" name="bloodRequestDTO.postalCode"
+        <div class="col">
+          <div class="inputLabel"> Postal Code<span class="asterisk">*</span> </div>
+          <div class="inputField">
+            <div class="flW">
+              <s:textfield label="Pin Code" name="bloodRequestDTO.postalCode"
 								id="pincode" cssClass="required  textField" />
-						</div>
-					</div>
-				</div>
-
-
-				<div class="col">
-					<div class="inputLabel">
-						Purpose<span class="asterisk">*</span>
-					</div>
-					<div class="inputField">
-						<div class="flW">
-							<%-- <s:textfield label="last donation date"
-								name="bloodRequestDTO.lastDonationDate" id="lastDonationDate"
-								cssClass="required  textField" /> --%>
-								<s:textarea cssClass="textField" name="bloodRequestDTO.purpose" id="lastDonationDate"/>
-                      </div>
-					</div>
-				</div>
-			</div>
+              <s:fielderror fieldName="bloodRequestDTO.postalCode" />
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="inputLabel">Required Date (MM/DD/YY)<span class="asterisk">*</span> </div>
+          <div class="inputField">
+            <div class="flW">
+            <s:textfield cssClass="required  textField" name="bloodRequestDTO.requiredDate" id="requiredDate">
+            
+            </s:textfield>
+             <s:fielderror fieldName="bloodRequestDTO.requiredDate" />
+            
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+    
+        <div class="col">
+          <div class="inputLabel">Purpose<span class="asterisk">*</span> </div>
+          <div class="inputField">
+            <div class="flW">
+            <s:textarea cssClass="required  textField" name="bloodRequestDTO.purpose" id="lastDonationDate">
+            
+            </s:textarea>
+             <s:fielderror fieldName="bloodRequestDTO.lastDonationDate" />
+            </div>
+          </div>
+        </div>
+      </div>
 			</div>
 			<div class="row">
 				<div class="submitBtn">
@@ -249,12 +260,16 @@ em {
 <script>
 	$(document).ready(function() {
 		$("#bloodrequest").validate({
-			rules : {
-			//donorPassword : "required",
-			//confirmPassword : {
-			//equalTo : "#donorPassword"
-			//}
-			}
+			ignore: ".ignore"
+		});
+	});
+	
+	$(function() {
+		$( "#requiredDate" ).datepicker({
+			yearRange: 'c:c+1',
+			changeMonth: true,
+			changeYear: true,
+			
 		});
 	});
 </script>

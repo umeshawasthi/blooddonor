@@ -1,6 +1,10 @@
 package com.raisonne.bd.dto.bloodrequest;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import net.sf.oval.constraint.MatchPattern;
 import net.sf.oval.constraint.MaxLength;
@@ -29,9 +33,7 @@ public class BloodRequestDTO implements Serializable{
 	@MinLength(value=10,message="min.length")
 	@MatchPattern(pattern="^\\d*$", message="only.digits.allowed")
 	private String mobileNumber;
-	@MaxLength(value=12,message="max.length")
-	@MinLength(value=10,message="min.length")
-	@MatchPattern(pattern="^\\d*$", message="only.digits.allowed")
+	
 	private String secondaryContact;
 	@NotBlank(message="not.blank")
 	private char gender;
@@ -55,6 +57,11 @@ public class BloodRequestDTO implements Serializable{
 	private String patientName;
 	@NotNull(message="not.blank")
 	private String purpose;
+	
+	@NotBlank(message="not.blank")
+	@NotNull(message="not.blank")
+	private Date requiredDate;
+	
 	private boolean verificationFlag;
 	private boolean bloodRequestUpdated=false;
 	
@@ -162,6 +169,20 @@ public class BloodRequestDTO implements Serializable{
 	}
 	public void setBloodRequestUpdated(boolean bloodRequestUpdated) {
 		this.bloodRequestUpdated = bloodRequestUpdated;
+	}
+	public Date getRequiredDate() {
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		String tempDate=df.format(this.requiredDate);
+		try {
+			return df.parse(tempDate);
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+		return this.requiredDate;
+	}
+	public void setRequiredDate(Date requiredDate) {
+		this.requiredDate = requiredDate;
 	}
 	
    

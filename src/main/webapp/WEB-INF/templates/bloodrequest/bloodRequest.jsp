@@ -55,12 +55,12 @@
       </div>
       <div class="row">
         <div class="col">
-          <div class="inputLabel"> Secondary Mobile Number<span class="asterisk">*</span> </div>
+          <div class="inputLabel"> Secondary Mobile Number </div>
           <div class="inputField">
             <div class="flW">
               <s:textfield label="Secondary Mobile Number"
 								name="bloodRequestDTO.secondaryContact" id="sMobileNumber"
-								cssClass="required  textField" />
+								cssClass="required  textField ignore"  />
               <s:fielderror fieldName="bloodRequestDTO.secondaryContact" />
             </div>
           </div>
@@ -71,7 +71,7 @@
             <div class="flW rdo">
               <s:radio label="Gender" name="bloodRequestDTO.gender"
 								list="#{'Male':'Male','Female':'Female'}" id="gender"
-								cssClass="required"> </s:radio>
+								cssClass="chkinput" > </s:radio>
             
             </div>
               <s:fielderror fieldName="bloodRequestDTO.gender" theme="simple"/>
@@ -119,7 +119,7 @@
             <div class="flW">
               <s:select list="states" label="State"
 								name="bloodRequestDTO.state" onchange="ajaxCallForDistrict();"
-								id="stateList" cssClass="required selectField"></s:select>
+								id="stateList" cssClass="required selectField" headerKey="#" headerValue="- Please Select State -"></s:select>
               <s:fielderror fieldName="bloodRequestDTO.state" />
             </div>
           </div>
@@ -160,6 +160,22 @@
           </div>
         </div>
         <div class="col">
+          <div class="inputLabel">Required Date (MM/DD/YY)<span class="asterisk">*</span> </div>
+          <div class="inputField">
+            <div class="flW">
+            <s:textfield cssClass="required  textField" name="bloodRequestDTO.requiredDate" id="requiredDate">
+            
+            </s:textfield>
+             <s:fielderror fieldName="bloodRequestDTO.requiredDate" />
+            
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+    
+        <div class="col">
           <div class="inputLabel">Purpose<span class="asterisk">*</span> </div>
           <div class="inputField">
             <div class="flW">
@@ -167,14 +183,12 @@
             
             </s:textarea>
              <s:fielderror fieldName="bloodRequestDTO.lastDonationDate" />
-              <%-- <s:textfield label="last donation date"
-								
-								cssClass="required  textField" />
-              <s:fielderror fieldName="bloodRequestDTO.lastDonationDate" /> --%>
             </div>
           </div>
         </div>
       </div>
+      
+      
       <div class="row">
         <div class="submitBtn">
           <s:submit name="bloodRequest" value="Send Request"
@@ -190,12 +204,16 @@
 <script>
 	$(document).ready(function() {
 		$("#bloodrequest").validate({
-			rules : {
-			//donorPassword : "required",
-			//confirmPassword : {
-			//equalTo : "#donorPassword"
-			//}
-			}
+			ignore: ".ignore"
+		});
+	});
+	
+	$(function() {
+		$( "#requiredDate" ).datepicker({
+			yearRange: 'c:c+1',
+			changeMonth: true,
+			changeYear: true,
+			
 		});
 	});
 </script>

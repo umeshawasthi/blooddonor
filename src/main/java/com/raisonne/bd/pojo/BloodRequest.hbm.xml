@@ -60,6 +60,11 @@
 		<property name="patientName" type="string">
 			<column name="patient_name" length="60" not-null="true" />
 		</property>
+		
+		 <property generated="never" lazy="false" name="requiredDate" type="timestamp">
+  			 <column length="19" name="requiredDate"/>
+ 		 </property>
+		
 		<property name="purpose" type="string"><!-- 
 				blood required date -->
 			<column name="purpose" length="100" not-null="true" />
@@ -67,6 +72,7 @@
 		<property generated="never" lazy="false" name="verificationFlag" type="boolean">
 			<column name="verification_flag" />
 		</property>
+		
 
 	</class>
 </hibernate-mapping>
