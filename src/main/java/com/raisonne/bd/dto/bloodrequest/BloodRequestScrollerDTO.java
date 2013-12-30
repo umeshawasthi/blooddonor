@@ -3,6 +3,8 @@
  */
 package com.raisonne.bd.dto.bloodrequest;
 
+
+
 /**
  * @author Umesh A
  * 
@@ -14,6 +16,7 @@ public class BloodRequestScrollerDTO {
 	private String state;
 	private String location;
 	private String contactNumber;
+	private String requiredBlooddate;
 	
 	
 	
@@ -61,6 +64,15 @@ public class BloodRequestScrollerDTO {
 
 	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
+	}
+
+	
+	public String getRequiredBlooddate() {
+		return requiredBlooddate;
+	}
+
+	public void setRequiredBlooddate(String requiredBlooddate) {
+		this.requiredBlooddate = requiredBlooddate;
 	}
 	
 	

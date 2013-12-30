@@ -77,7 +77,7 @@
 					<s:iterator value="value">
 					    <li><a onclick="bloodRequestBackPopup('<s:property value="uuid"/>');">Need&nbsp;<s:property value="bloodGroup" />
 							blood, Contact No: &nbsp;<s:property
-								value="contactNumber" />&nbsp;At&nbsp;<s:property value="location" />(<s:property value="state" />)</a></li>
+								value="contactNumber" />&nbsp;At&nbsp;<s:property value="location" />(<s:property value="state" />)&nbsp;::&nbsp;<span style="color:#666666;font-weight:bold"><s:property value="requiredBlooddate" /></span></a></li>
     		      </s:iterator>
                 </s:iterator>
 					

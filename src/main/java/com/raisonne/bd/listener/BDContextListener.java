@@ -7,9 +7,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -124,7 +126,7 @@ public class BDContextListener implements ServletContextListener {
 	    PreparedStatement pstmt = null;
 		try {
 			conn=GenericConnectionManager.getInstance().getConnection();
-			String query="select uuid,mobile_number,blood_group,location,state from blood_request where verification_flag=?";
+			String query="select uuid,mobile_number,blood_group,location,requiredDate,state from blood_request where verification_flag=?";
 			pstmt=conn.prepareStatement(query);
 			pstmt.setBoolean(1, true);
 			rs=pstmt.executeQuery();
@@ -134,6 +136,10 @@ public class BDContextListener implements ServletContextListener {
 				dto.setBloodGroup(rs.getString("blood_group"));
 				dto.setContactNumber(rs.getString("mobile_number"));
 				dto.setLocation(rs.getString("location"));
+				Date requiredDate=rs.getDate("requiredDate");
+				SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+				final String date=sdf.format(requiredDate);
+				dto.setRequiredBlooddate(date);
 				dto.setState(StateInfoUtils.getStates().get(rs.getString("state")));
 				cacheObjMap.put(dto.getUuid(), dto);
 			}
