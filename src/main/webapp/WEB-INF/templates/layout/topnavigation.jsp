@@ -72,8 +72,7 @@
 
 		$("#uniqueId").rules("add", {
 			digits : true,
-			min : 1,
-			max : 200
+			min : 1
 		});
 		
 		$("#feedbackForm").validate();

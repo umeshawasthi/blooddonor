@@ -58,10 +58,18 @@ public class BloodRequestUpdate extends BaseAction {
 	
 	public String getBloodRequetById() throws Exception
 	{
+		final int requestId=bloodRequestDTO.getUuid();
 		bloodRequestDTO=bloodRequestService.loadBloodRequestById(bloodRequestDTO);
 		if(bloodRequestDTO==null)
 		{
-			message="blood request id not found";
+			
+			StringBuilder messageBuilder=new StringBuilder();
+			messageBuilder.append("Sorry, we are unable to find any data for given Id : ");
+			messageBuilder.append("<b>"+requestId+"</b>");
+			messageBuilder.append("</br>");
+			messageBuilder.append("Please cross check your request id"+"</br>");
+			setMessage(messageBuilder.toString());
+			
 			setWorkingTemplate("/WEB-INF/templates/bloodrequest/message.jsp");
 			setTitle("Save A Life Today| Update Blood Request");
 			return SUCCESS;
@@ -90,7 +98,12 @@ public class BloodRequestUpdate extends BaseAction {
 		if(dto.isVerificationFlag()){
 			updateBloodRequestCache(dto);
 		}
-		message="Blood request updated successfully";
+		StringBuilder messageBuilder=new StringBuilder();
+		messageBuilder.append("Your Blood Request has been saved successfully</br>");
+		messageBuilder.append("Your request number is:&nbsp;<b>"+dto.getUuid()+"</b></br>");
+		messageBuilder.append("Please use above refrence number for editing your request or any future communication.");
+		setMessage(messageBuilder.toString());
+		//message="Blood request updated successfully";
 		setWorkingTemplate("/WEB-INF/templates/bloodrequest/message.jsp");
 		setTitle("Save A Life Today| Update Blood Request");
 		return SUCCESS;

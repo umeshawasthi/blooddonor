@@ -89,7 +89,7 @@ em {
 						<div class="flW">
 							<s:textfield label="Secondary Mobile Number"
 								name="bloodRequestDTO.secondaryContact" id="sMobileNumber"
-								cssClass="required  textField" />
+								cssClass="required  textField ignore" />
 						</div>
 					</div>
 				</div>
