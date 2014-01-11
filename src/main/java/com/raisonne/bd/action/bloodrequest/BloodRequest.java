@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import net.sf.oval.constraint.AssertValid;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+import org.apache.struts2.interceptor.ServletRequestAware;
 
 import com.opensymphony.xwork2.Preparable;
 import com.raisonne.bd.action.donor.BaseAction;
@@ -25,7 +29,7 @@ import com.raisonne.bd.util.StateInfoUtils;
  * 
  */
 
-public class BloodRequest extends BaseAction implements Preparable{
+public class BloodRequest extends BaseAction implements Preparable,ServletRequestAware{
 	
 	private static final long serialVersionUID = 1L;
 	Logger log = Logger.getLogger(BloodRequest.class);
@@ -147,7 +151,11 @@ public class BloodRequest extends BaseAction implements Preparable{
 	@Override
 	public void prepare() throws Exception {
 		getBloodRequest();
-		
+		String key = "bloodRequestDTO.state";
+		final String state = (String) request.getParameter(key);
+		if (StringUtils.isNotBlank(state)) {
+			setDistricts(StateInfoUtils.getDistricts().get(state));
+	    }
 	}
 
 	public String getMessage() {
@@ -156,6 +164,13 @@ public class BloodRequest extends BaseAction implements Preparable{
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	protected HttpServletRequest request = null;
+	@Override
+	public void setServletRequest(HttpServletRequest request) {
+		this.request=request;
+		
 	}
 
 }

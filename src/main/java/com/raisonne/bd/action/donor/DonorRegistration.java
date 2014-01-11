@@ -258,8 +258,7 @@ public class DonorRegistration extends BaseAction implements ServletContextAware
 		final String state = (String) request.getParameter(key);
 		if (StringUtils.isNotBlank(state)) {
 				setDistricts(StateInfoUtils.getDistricts().get(state));
-		
-		}
+	    }
 	}
 
 	public DonorRolesDTO getDonorRolesDTO() {
