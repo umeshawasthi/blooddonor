@@ -8,10 +8,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import net.sf.oval.constraint.AssertValid;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.util.ServletContextAware;
 
 import com.opensymphony.xwork2.Preparable;
@@ -34,7 +37,7 @@ import com.raisonne.bd.util.StateInfoUtils;
  * 
  */
 
-public class DonorRegistration extends BaseAction implements ServletContextAware,Preparable{
+public class DonorRegistration extends BaseAction implements ServletContextAware,Preparable,ServletRequestAware{
 
 	/**
 	 * Class level property decelerations.
@@ -250,7 +253,13 @@ public class DonorRegistration extends BaseAction implements ServletContextAware
 	@Override
 	public void prepare() throws Exception {
 		getListData();
+
+		String key = "donorProfileDTO.state";
+		final String state = (String) request.getParameter(key);
+		if (StringUtils.isNotBlank(state)) {
+				setDistricts(StateInfoUtils.getDistricts().get(state));
 		
+		}
 	}
 
 	public DonorRolesDTO getDonorRolesDTO() {
@@ -259,7 +268,17 @@ public class DonorRegistration extends BaseAction implements ServletContextAware
 
 	public void setDonorRolesDTO(DonorRolesDTO donorRolesDTO) {
 		this.donorRolesDTO = donorRolesDTO;
-	}	
+	}
+
+	
+	protected HttpServletRequest request = null;
+
+	@Override
+	public void setServletRequest(HttpServletRequest request) {
+		this.request=request;
+		
+	}
+	
 	
 	
 }

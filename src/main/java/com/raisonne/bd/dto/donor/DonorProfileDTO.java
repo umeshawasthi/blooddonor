@@ -70,8 +70,7 @@ public class DonorProfileDTO implements java.io.Serializable {
 	@MatchPattern(pattern="^\\d*$", message="only.digits.allowed")
 	private String mobile;
 	
-	@MaxLength(value=12,message="max.length")
-	@MinLength(value=10,message="min.length")
+	
 	@MatchPattern(pattern="^\\d*$", message="only.digits.allowed")
 	private String secondaryContactNumber;
 	
