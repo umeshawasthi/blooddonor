@@ -4,6 +4,7 @@
 <!-- Generated Nov 9, 2011 8:00:02 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
  <class name="com.raisonne.bd.pojo.DonorProfile" table="donor_profile">
+ <cache usage="read-write" />
   <id name="donor_uuid" type="java.lang.String">
    <column length="45" name="donor_uuid"/>
    <generator class="uuid"/>

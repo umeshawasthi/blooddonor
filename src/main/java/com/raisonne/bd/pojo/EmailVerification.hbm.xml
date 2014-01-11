@@ -4,6 +4,7 @@
 <!-- Generated Nov 9, 2011 8:00:02 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.raisonne.bd.pojo.EmailVerification" table="email_verification">
+    <cache usage="read-write" />
         <id name="tokenId" type="java.lang.String">
 			<column name="token_id" length="45" />
 			<generator class="uuid" />

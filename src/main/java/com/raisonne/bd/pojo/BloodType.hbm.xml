@@ -4,6 +4,7 @@
 <!-- Generated Nov 2, 2011 12:27:39 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.raisonne.bd.pojo.BloodType" table="blood_type" catalog="blood_donation">
+    <cache usage="read-write" />
         <id name="uuid" type="string">
             <column name="uuid" length="45" />
             <generator class="assigned" />
