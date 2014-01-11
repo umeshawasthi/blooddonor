@@ -39,6 +39,9 @@ public class DonorConverterImpl implements DonorConverter {
 	@Override
 	public DonorProfile convertdonorDtoToPojo(DonorProfileDTO donorProfileDto) {
 		DonorProfile donorProfile = new DonorProfile();
+		if(donorProfileDto.isOauth()){
+			donorProfile.setActivatedFlag(true);
+		}
 		DonorPreferences donorPreferences = new DonorPreferences();
 		DonorRoles donorRoles=new DonorRoles();
 		String[] ignoreProperties = { "donorPreferences","donorRoles" };

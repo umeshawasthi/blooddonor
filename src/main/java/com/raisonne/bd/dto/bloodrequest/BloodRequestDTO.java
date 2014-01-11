@@ -34,7 +34,7 @@ public class BloodRequestDTO implements Serializable{
 	@MatchPattern(pattern="^\\d*$", message="only.digits.allowed")
 	private String mobileNumber;
 	
-	
+	@MatchPattern(pattern="^\\d*$", message="only.digits.allowed")
 	private String secondaryContact;
 	@NotBlank(message="not.blank")
 	private char gender;
