@@ -3,7 +3,7 @@
  */
 package com.raisonne.bd.constant;
 
-import org.scribe.model.Token;
+
 
 /**
  * A wrapper class which will hold all static final constant values being used OAuth
@@ -54,7 +54,7 @@ public class OAuthConstants {
 	 * <li>Facebook</li>
 	 * <li>MSN</li>
 	 */
-	public static final Token EMPTY_TOKEN = null;
+	
 	
 	/**
 	 * Key that will be used to store request token in to session
