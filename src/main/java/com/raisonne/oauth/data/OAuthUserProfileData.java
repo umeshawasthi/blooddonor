@@ -3,6 +3,8 @@
  */
 package com.raisonne.oauth.data;
 
+import java.util.Map;
+
 /**
  * Data class which will carry user profile data being provided by 
  * OAuth service provider.
@@ -23,6 +25,7 @@ public class OAuthUserProfileData {
 	private String verified;
 	private String id;
 	private boolean newUser=false;
+	private Map<String,String> emails;
 	
 	public OAuthUserProfileData() {
 		super();
@@ -75,6 +78,14 @@ public class OAuthUserProfileData {
 
 	public void setNewUser(boolean newUser) {
 		this.newUser = newUser;
+	}
+
+	public Map<String, String> getEmails() {
+		return emails;
+	}
+
+	public void setEmails(Map<String, String> emails) {
+		this.emails = emails;
 	}
 	
 	

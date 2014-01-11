@@ -14,10 +14,6 @@ var providers_large = {
 		name : 'Google',
 		url : 'GOOGLE'
 	},
-	YAHOO : {
-		name : 'Yahoo',
-		url : 'YAHOO'
-	},
 	
 	FACEBOOK : {
      name: 'Facebook',

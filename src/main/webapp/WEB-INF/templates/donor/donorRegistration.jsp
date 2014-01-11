@@ -136,7 +136,7 @@
 					<div class="inputField">
 						<div class="flW rdo">
 							<s:radio name="donorProfileDTO.gender"
-								cssClass="chkinput" list="#{'Male':'Male','Female':'Female'}"
+								cssClass="chkinput" list="#{'male':'Male','Female':'female'}"
 								id="gender" value="%{user_gender}" theme="xhtml">
 							</s:radio>
 							<s:fielderror fieldName="donorProfileDTO.gender" />

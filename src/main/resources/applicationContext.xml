@@ -19,11 +19,29 @@
 	<import resource="com/raisonne/bd/action/admin/admin-actions-spring.xml"/>
 	<import resource="com/raisonne/oauth/action/oauth-actions-spring.xml"/>
 	<import resource="com/raisonne/bd/converter/converters-spring.xml"/>
-	<import resource="com/raisonne/oauth/config/oauth-config-spring.xml"/>
+	<!-- <import resource="com/raisonne/oauth/config/oauth-config-spring.xml"/> -->
 	<import resource="com/raisonne/bd/util/mail/mail-spring.xml"/>
 	<import resource="com/raisonne/bd/login/action/donor-login-spring.xml"/>
 	
 	<import resource="com/raisonne/bd/service/bloodrequest/bloodrequest-services-spring.xml"/>
 	<import resource="com/raisonne/bd/action/bloodrequest/bloodrequest-actions-spring.xml"/>
+	
+	<bean id="googleOAuthAPI" class="com.raisonne.oauth.service.api.GoogleOAuthStrategy"/>
+	<bean id="facebookOAuthAPI" class="com.raisonne.oauth.service.api.FacebookOAuthStrategy"/>
+	<bean id="msnOAuthAPI" class="com.raisonne.oauth.service.api.MicrosoftOAuthStrategy"/>
+	
+	
+	<bean id="oAuthServiceProvider"  class="com.raisonne.oauth.service.OAuthServiceProvider">
+     <property name="oAuthServiceAPI">
+       <map>
+         <entry key="google" value-ref="googleOAuthAPI"></entry>
+          <entry key="facebook" value-ref="facebookOAuthAPI"></entry>
+         <entry key="msn" value-ref="msnOAuthAPI"></entry>
+       </map>
+     </property>
+        
+     
+    </bean>
+	
 </beans>
 

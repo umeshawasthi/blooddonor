@@ -10,17 +10,17 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
    		Spring container for various actions that needs to be created and injected.
     -->
 
+	 
+	 
 	 <bean id="oAuthRedirectAction" class="com.raisonne.oauth.action.OAuthRedirectAction" scope="prototype">
-		<property name="oAuthServiceConfiguration" ref="oAuthServiceConfiguration"/>
-		<property name="oAuthGetRequestToken" ref="oAuthGetRequestToken"/>
+		<property name="oAuthServiceProvider" ref="oAuthServiceProvider"/>
 	 </bean>
 	 
 	  			 
 	 <bean id="oAuthCallbackHandlerAction" class="com.raisonne.oauth.action.OAuthCallbackHandlerAction" scope="prototype">
-		<property name="oAuthServiceConfiguration" ref="oAuthServiceConfiguration"/>
-		<property name="oAuthGetAccessToken" ref="oAuthGetAccessToken"/>
 		<property name="jsonDataParser" ref="jsonDataParser"/> 
 		<property name="donorService" ref="donorService"/>
+		<property name="oAuthServiceProvider" ref="oAuthServiceProvider"/>
 		  
 	 </bean>
 	 

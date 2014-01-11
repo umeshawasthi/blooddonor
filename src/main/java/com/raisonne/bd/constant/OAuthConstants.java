@@ -22,6 +22,9 @@ public class OAuthConstants {
 	 */
 	public static final long ONE_HOUR = 3600000L;
 	public static final long TWO_HOUR = ONE_HOUR * 2L;
+	public static final String PREFERRED_EMAIL="preferred";
+	public static final String ACCOUNT_EMAIL="account";
+	public static final String PERSONAL_EMAIL="personal";
 	
 	/**
 	 * Key to store openid mac in the session so as to retrieve back the same once user is being redirected back
@@ -67,6 +70,8 @@ public class OAuthConstants {
 	 * removed from the session
 	 */
 	public static final String OAUTH_USERPROFILE_DATA="oauth_user_profile";
+	
+	public static final String SERVICE_PROVIDER_NAME="serviceProviderName";
 	
 
 }
